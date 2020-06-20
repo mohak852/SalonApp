@@ -1,0 +1,8 @@
+{
+    "title": "Flutter Rocks",
+    "greetTo": "Hello {name}",
+    "firstText": "First",
+    "secondText": "Second",
+    "thirdText": "Third",
+    "fourText": "Fourth"
+}
