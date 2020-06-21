@@ -32,14 +32,22 @@ class _SecondPageState extends State<SecondPage> {
                 padding: EdgeInsets.all(25.0),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                  image: AssetImage('assets/men-working-331989.jpg'),
+                  image: NetworkImage('https://images.pexels.com/photos/3268732/pexels-photo-3268732.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
                   fit: BoxFit.cover,
                  )
                 ),
                 child: Center(
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: 250.0,),
+                      SizedBox(height: 10.0,),
+                      Row(
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: ()=>Navigator.of(context).pushNamed('/LoginPage'),
+                            child: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30.0)),
+                        ],
+                      ),
+                      SizedBox(height: 200.0,),
                       Container(
                         padding: EdgeInsets.all(20.0),
                         height: 362.0,

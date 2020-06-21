@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.all(25.0),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                  image: AssetImage('assets/black-leather-barber-chair-in-front-of-mirror-3993308.jpg'),
+                  image: NetworkImage('https://images.pexels.com/photos/331989/pexels-photo-331989.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
                   fit: BoxFit.cover,
                  )
                 ),
@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: 250.0,),
                       Container(
                         padding: EdgeInsets.all(20.0),
-                        height: 362.0,
+                        height: 390.0,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.86),
@@ -59,10 +59,13 @@ class _LoginPageState extends State<LoginPage> {
                                     Text("મોબાઇલ નંબર",style: kHintTextStyle,),
                                   ],
                                 ),
-                                Divider(
-                                  height: 50,
-                                  thickness: 3.0,
-                                  color: Colors.black,
+                                TextField(
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderSide: BorderSide(color: Colors.black)
+                                    )
+                                  ),
                                 ),
                                 SizedBox(height: 20.0,),
                                 Row(
@@ -70,11 +73,14 @@ class _LoginPageState extends State<LoginPage> {
                                     Text("પાસવર્ડ",style: kHintTextStyle,),
                                   ],
                                 ),
-                                Divider(
-                                  height: 50,
-                                  thickness: 3.0,
-                                  color: Colors.black,
+                                TextField(
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15.0)
+                                    )
+                                  ),
                                 ),
+                                SizedBox(height: 5.0,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: <Widget>[
@@ -90,23 +96,18 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   child: Center(child: Text("Login",style: kButtonStyle,)),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 10.0,),
+                                SizedBox(height: 15.0,),
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text("નવું ખાતું? ",style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontFamily: 'Raleway',
                               fontSize: 18.0
                             ),),
                             GestureDetector(
-                              onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondPage())),
+                              onTap: ()=>Navigator.of(context).pushNamed('/SecondPage'),
                                 child: Text("Register Now",style: TextStyle(
                                 color: const Color(0xffFF5600),
                                 fontFamily: 'Raleway',
@@ -117,6 +118,12 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                       ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      
                     ],
                   ),
                 ),

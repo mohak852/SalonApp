@@ -24,115 +24,113 @@ class _SalonOwnerState extends State<SalonOwner> {
                 padding: EdgeInsets.all(25.0),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                  image: AssetImage('assets/black-leather-barber-chair-in-front-of-mirror-3993308.jpg'),
+                  image: NetworkImage('https://images.pexels.com/photos/3993308/pexels-photo-3993308.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
                   fit: BoxFit.cover,
                  )
                 ),
-                child: SingleChildScrollView(
+                child: Column(
+                children: <Widget>[
+                  Row(
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: ()=>Navigator.of(context).pushNamed('/SecondPage'),
+                            child: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30.0)),
+                        ],
+                      ),
+                  SizedBox(height: 150.0,),
+                  Container(
+                    padding: EdgeInsets.all(20.0),
+                    height: 505.0,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.86),
+                      borderRadius: BorderRadius.circular(10.0)
+                    ),
                     child: Column(
-                    children: <Widget>[
-                      SizedBox(height: 250.0,),
-                      Container(
-                        padding: EdgeInsets.all(20.0),
-                        height: 470.0,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.86),
-                          borderRadius: BorderRadius.circular(10.0)
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text("તમારી સલૂન નોંધણી કરો",style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Raleway',
+                        fontSize: 30.0
+                      )),
+                      SizedBox(height: 30.0,),
+                        Column(
                           children: <Widget>[
-                            Text("તમારી સલૂન નોંધણી કરો",style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Raleway',
-                            fontSize: 30.0
-                          )),
-                          SizedBox(height: 30.0,),
-                            Column(
+                            Row(
                               children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Text("સલૂન નામ",style: kHintTextStyle,),
-                                  ],
-                                ),
-                                Divider(
-                                  height: 50,
-                                  thickness: 3.0,
-                                  color: Colors.black,
-                                ),
-                                SizedBox(height: 5.0,),
-                                Row(
-                                  children: <Widget>[
-                                    Text("માલીકનું નામ",style: kHintTextStyle,),
-                                  ],
-                                ),
-                                Divider(
-                                  height: 50,
-                                  thickness: 3.0,
-                                  color: Colors.black,
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Text("મોબાઇલ નંબર (Login માટે)",style: kHintTextStyle,),
-                                  ],
-                                ),
-                                Divider(
-                                  height: 50,
-                                  thickness: 3.0,
-                                  color: Colors.black,
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Text("પાસવર્ડ",style: kHintTextStyle,),
-                                  ],
-                                ),
-                                Divider(
-                                  height: 50,
-                                  thickness: 3.0,
-                                  color: Colors.black,
-                                ),
-                                SizedBox(height: 10.0,),
-                                Container(
-                                  height: 50.0,
-                                  width: 186,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(15.0)
-                                  ),
-                                  child: Center(child: Text("Login",style: kButtonStyle,)),
-                                ),
+                                Text("સલૂન નામ",style: kHintTextStyle,),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 10.0,),
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text("નવું ખાતું? ",style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Raleway',
-                              fontSize: 18.0
-                            ),),
+                            
+                            TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0)
+                                )
+                              ),
+                            ),
+                            SizedBox(height: 5.0,),
+                            Row(
+                              children: <Widget>[
+                                Text("માલીકનું નામ",style: kHintTextStyle,),
+                              ],
+                            ),
+                            
+                            TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0)
+                                )
+                              ),
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: <Widget>[
+                                Text("મોબાઇલ નંબર (Login માટે)",style: kHintTextStyle,),
+                              ],
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0)
+                                )
+                              ),
+                            ),
+                            SizedBox(height: 5,),
+                            Row(
+                              children: <Widget>[
+                                Text("પાસવર્ડ",style: kHintTextStyle,),
+                              ],
+                            ),
+                            TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0)
+                                )
+                              ),
+                            ),
+                            SizedBox(height: 10.0,),
                             GestureDetector(
-                              onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondPage())),
-                                child: Text("Register Now",style: TextStyle(
-                                color: const Color(0xffFF5600),
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18.0
-                              ),),
+                              onTap: ()=>Navigator.of(context).pushNamed('/TapBar'),
+                                child: Container(
+                                height: 50.0,
+                                width: 186,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(15.0)
+                                ),
+                                child: Center(child: Text("નોંધણી કરો",style: kButtonStyle,)),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                ],
+                  ),
               ),
             ],
           ),
