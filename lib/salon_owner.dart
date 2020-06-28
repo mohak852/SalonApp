@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:salon/constants.dart';
-import 'package:salon/second_page.dart';
+import 'package:salon/blockButton.dart';
+import 'app_config.dart' as config;
 
 class SalonOwner extends StatefulWidget {
   @override
@@ -11,131 +12,109 @@ class SalonOwner extends StatefulWidget {
 class _SalonOwnerState extends State<SalonOwner> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor:  Theme.of(context).accentColor,
+        leading: IconButton(
+          onPressed: ()=>Navigator.of(context).pushNamed('/SecondPage'),
+          icon: Icon(Icons.arrow_back,color:  Colors.white,)),
+        title: Text("તમારી સલૂન નોંધણી કરો",style: TextStyle(
+          color: Colors.white
+        ),)
+      ),
+      backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+                  child: Column(
+              children: <Widget>[
+                Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 10,
+            vertical: 10
+          ),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 27),
+          width: config.App(context).appWidth(88),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                padding: EdgeInsets.all(25.0),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                  image: NetworkImage('https://images.pexels.com/photos/3993308/pexels-photo-3993308.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                  fit: BoxFit.cover,
-                 )
-                ),
-                child: Column(
-                children: <Widget>[
-                  Row(
-                        children: <Widget>[
-                          GestureDetector(
-                            onTap: ()=>Navigator.of(context).pushNamed('/SecondPage'),
-                            child: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30.0)),
-                        ],
-                      ),
-                  SizedBox(height: 150.0,),
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    height: 505.0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.86),
-                      borderRadius: BorderRadius.circular(10.0)
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text("તમારી સલૂન નોંધણી કરો",style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Raleway',
-                        fontSize: 30.0
-                      )),
-                      SizedBox(height: 30.0,),
-                        Column(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Text("સલૂન નામ",style: kHintTextStyle,),
-                              ],
-                            ),
-                            
-                            TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0)
-                                )
-                              ),
-                            ),
-                            SizedBox(height: 5.0,),
-                            Row(
-                              children: <Widget>[
-                                Text("માલીકનું નામ",style: kHintTextStyle,),
-                              ],
-                            ),
-                            
-                            TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0)
-                                )
-                              ),
-                            ),
-                            SizedBox(height: 5,),
-                            Row(
-                              children: <Widget>[
-                                Text("મોબાઇલ નંબર (Login માટે)",style: kHintTextStyle,),
-                              ],
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0)
-                                )
-                              ),
-                            ),
-                            SizedBox(height: 5,),
-                            Row(
-                              children: <Widget>[
-                                Text("પાસવર્ડ",style: kHintTextStyle,),
-                              ],
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0)
-                                )
-                              ),
-                            ),
-                            SizedBox(height: 10.0,),
-                            GestureDetector(
-                              onTap: ()=>Navigator.of(context).pushNamed('/TapBar'),
-                                child: Container(
-                                height: 50.0,
-                                width: 186,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(15.0)
-                                ),
-                                child: Center(child: Text("નોંધણી કરો",style: kButtonStyle,)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-                  ),
+              TextField(
+              style: TextStyle(
+                color: Colors.black
+              ),
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                labelText: "સલૂન નામ",
+                labelStyle: TextStyle(color: Theme.of(context).accentColor),
+                contentPadding: EdgeInsets.all(12),
+                hintStyle: TextStyle(color: Theme.of(context).focusColor.withOpacity(0.7)),
+                prefixIcon: Icon(Icons.person_outline, color: Theme.of(context).accentColor),
+                 border: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor )),
+              ),
+              ),
+              SizedBox(height: 30),
+              TextField(
+              style: TextStyle(
+                color: Colors.black
+              ),
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: "માલીકનું નામ",
+                labelStyle: TextStyle(color: Theme.of(context).accentColor),
+                contentPadding: EdgeInsets.all(12),
+                
+                hintStyle: TextStyle(color: Theme.of(context).focusColor.withOpacity(0.7)),
+                prefixIcon: Icon(Icons.email, color: Theme.of(context).accentColor),
+                 border: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor )),
+              ),
+              ),
+              SizedBox(height: 30),
+              TextField(
+              style: TextStyle(
+                color: Colors.black
+              ),
+              decoration: InputDecoration(
+                labelText: "મોબાઇલ નંબર (Login માટે)",
+                labelStyle: TextStyle(color: Theme.of(context).accentColor),
+                contentPadding: EdgeInsets.all(12),
+                hintStyle: TextStyle(color: Theme.of(context).focusColor.withOpacity(0.7)),
+                prefixIcon: Icon(Icons.phone, color: Theme.of(context).accentColor),
+                 border: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor )),
+              ),
+              ),
+              SizedBox(height: 30),
+              TextField(
+              style: TextStyle(
+                color: Colors.black
+              ),
+              decoration: InputDecoration(
+                labelText: "પાસવર્ડ",
+                labelStyle: TextStyle(color: Theme.of(context).accentColor),
+                contentPadding: EdgeInsets.all(12),
+                hintStyle: TextStyle(color: Theme.of(context).focusColor.withOpacity(0.7)),
+                prefixIcon: Icon(Icons.lock_outline, color: Theme.of(context).accentColor),
+                border: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Theme.of(context).accentColor )),
+              ),
+              ),
+              SizedBox(height: 30),
+              BlockButtonWidget(
+                color: Theme.of(context).accentColor,
+                text: Text("નોંધણી કરો",style:TextStyle(color: Color(0xffc7ece3),fontWeight: FontWeight.bold,fontSize: 20.0),),
+                onPressed: ()=>Navigator.of(context).pushNamed('/TapBar'),
               ),
             ],
           ),
+                ),
+              ],
+            ),
         ),
-      ),
-    );
+      );
   }
 }

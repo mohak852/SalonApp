@@ -1,152 +1,229 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:salon/constants.dart';
-import 'package:salon/salon_owner.dart';
+import 'package:salon/couponCard.dart';
 
+import 'search_bar.dart';
 
 class HomePage extends StatefulWidget {
+    int currentTab = 2;
+  HomePage({Key key, this.currentTab}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget _containers(String text) {
-    return Container(
-      height: 91.0,
-      width: 130.0,
-      
-      decoration: BoxDecoration(
-        color: Color(0xffDBDBDA),
-        borderRadius: BorderRadius.circular(15.0), 
-      ),
-      child: Center(
-        child: Text(text,style: kHintTextStyle,),
-      ),
-    );
+  
+List<List<String>> titleList = [
+    ["જેન્ટ્સ પાર્લર નિષ્ણાત (500)"],
+    ["લેડિઝ પાર્લર નિષ્ણાત (1000)"],
+    ["આર્ટિસ્ટ છોકરાઓ (800)"],
+    ["આર્ટિસ્ટ છોકરીઓ (800)"],
+    ["ટેટૂ આર્ટિસ્ટ (150)"],
+    ["દુલ્હન મેકઅપ નિષ્ણાત"],
+    ["શોપ ખરીદનાર"],
+    ["કામ શીખવા માંગે છે"],
+  ];
+  void _selectTab(int tabItem) {
+    setState((){
+      this.widget.currentTab = tabItem;
+      switch (tabItem) {
+        case 0:
+          return Navigator.of(context).pushNamed('/HomePage');
+          break;
+        case 1:
+          break;
+        case 2:
+          return Navigator.of(context).pushNamed('/HomePage');
+          break;
+        case 3:
+          return Navigator.of(context).pushNamed('/HomePage');
+          break;
+      }
+    });
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
-        child: Container(
-          height: 50.0,
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text("Home",style: kHintTextStyle,),
-                Container(
-                  color: Colors.black,
-                  width: 2,
-                ),
-                GestureDetector(
-                  onTap: ()=>Navigator.of(context).pushNamed('/SearchStaff'),
-                  child: Text("સ્ટાફ શોધ",style: kHintTextStyle,)),
-                Container(
-                  color: Colors.black,
-                  width: 2,
-                ),
-                Text("મારું ખાતું",style: kHintTextStyle,),
-              ],
+       bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.black,
+          selectedFontSize: 0,
+          unselectedFontSize: 0,
+          iconSize: 22,
+          elevation: 0,
+          backgroundColor: Theme.of(context).accentColor,
+          selectedIconTheme: IconThemeData(size: 28),
+          unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
+          currentIndex: 1,
+          onTap: (int i) {
+            this._selectTab(i);
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: new Container(height: 0.0),
             ),
-          ),
-        ),
-      ),
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                padding: EdgeInsets.all(25.0),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                  image: NetworkImage('https://images.pexels.com/photos/3268732/pexels-photo-3268732.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                  fit: BoxFit.cover,
-                  
-                 ),
-                 color: Colors.black.withOpacity(0.8),
-                ),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(20.0),
-                        height: 128.0,
-                        width: 354.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xffDBDBDA),
-                          borderRadius: BorderRadius.circular(15.0), 
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                          Text("નોકરી ઇચ્છુકો",style: TextStyle(
+            BottomNavigationBarItem(
+                title: new Container(height: 5.0),
+                icon: Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
                           color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Raleway',
-                          fontSize: 30.0
-                        )),
-                            Text("ટેટૂ આર્ટિસ્ટ",style:  TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Raleway',
-                            fontSize: 30.0
-                          ),),
-                          
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25.0,),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              _containers("જેન્ટ્સ \n પાર્લર\n નિષ્ણાત (500)"),
-                              _containers("લેડિઝ \n પાર્લર\nનિષ્ણાત (1000)")
-                            ],
-                          ),
-                          SizedBox(height: 10.0,),
-                          Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          _containers("જેન્ટ્સ \n પાર્લર\n નિષ્ણાત (500)"),
-                          _containers("લેડિઝ \n પાર્લર\nનિષ્ણાત (1000)")
-                        ],
-                      ),
-                      SizedBox(height: 10.0,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          _containers("જેન્ટ્સ \n પાર્લર\n નિષ્ણાત (500)"),
-                          _containers("લેડિઝ \n પાર્લર\nનિષ્ણાત (1000)")
-                        ],
-                      ),
-                      SizedBox(height: 10.0,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          _containers("જેન્ટ્સ \n પાર્લર\n નિષ્ણાત (500)"),
-                          _containers("લેડિઝ \n પાર્લર\nનિષ્ણાત (1000)")
-                        ],
-                      ),
-                        ],
-                      ),
+                          blurRadius: 40,
+                          offset: Offset(0, 15)),
+                      BoxShadow(
+                          color:  Colors.black,
+                          blurRadius: 13,
+                          offset: Offset(0, 3))
                     ],
+                  ),
+                  child: new Icon(Icons.home,
+                      color: Theme.of(context).primaryColor),
+                )),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              title: new Container(height: 0.0),
+            ),
+          ]),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: new IconButton(
+          icon: new Icon(Icons.sort, color: Colors.white),
+         onPressed: () => {},
+        ),
+        automaticallyImplyLeading: false,
+        backgroundColor: Theme.of(context).accentColor,
+        elevation: 0,
+        centerTitle: true,
+        title: Text("Salon App",style: TextStyle(
+          color: Colors.white
+        ),),
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+             Padding(
+                padding: const EdgeInsets.only(left: 20, right: 10),
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
+                  leading: Icon(
+                    Icons.local_offer,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  title: Text(
+                    'Few Menu',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style:TextStyle(
+                      color: Theme.of(context).accentColor
+                    ),
+                  ),
+                  subtitle: Text(
+                    'Man Salon',
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor
+                    )
                   ),
                 ),
               ),
-            ],
+             CarouselSlider(
+          options: CarouselOptions(
+            autoPlay: true,
+            autoPlayAnimationDuration: Duration(seconds: 2),
+            autoPlayCurve: Curves.easeInOut
           ),
+          items: titleList.map((item) => Container(
+            height: 300,
+            child: CouponCard(abc: item,),
+          )).toList(),
+        ),
+        Padding(
+                padding: const EdgeInsets.only(left: 20, right: 10),
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
+                  leading: Icon(
+                    Icons.local_offer,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  title: Text(
+                    'Rest Menu',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style:TextStyle(
+                      color: Theme.of(context).accentColor
+                    ),
+                  ),
+                  subtitle: Text(
+                    'Man Salon',
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor
+                    )
+                  ),
+                ),
+              ),
+         CarouselSlider(
+          options: CarouselOptions(
+            autoPlay: true,
+            autoPlayAnimationDuration: Duration(seconds: 2),
+            autoPlayCurve: Curves.easeInOut
+          ),
+          items: titleList.map((item) => Container(
+            height: 300,
+            child: CouponCard(abc: item,),
+          )).toList(),
+        ),
+        Padding(
+                padding: const EdgeInsets.only(left: 20, right: 10),
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
+                  leading: Icon(
+                    Icons.local_offer,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  title: Text(
+                    'Promotion Ads',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style:TextStyle(
+                      color: Theme.of(context).accentColor
+                    ),
+                  ),
+                  subtitle: Text(
+                    'Ads',
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor
+                    )
+                  ),
+                ),
+              ),
+         CarouselSlider(
+          options: CarouselOptions(
+            autoPlay: true,
+            autoPlayAnimationDuration: Duration(seconds: 2),
+            autoPlayCurve: Curves.easeInOut
+          ),
+          items: titleList.map((item) => Container(
+            height: 300,
+            child: CouponCard(abc: item,),
+          )).toList(),
+        ),
+
+          ],
         ),
       ),
     );
+    
   }
 }
+
