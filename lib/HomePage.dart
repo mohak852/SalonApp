@@ -44,54 +44,20 @@ List<List<String>> titleList = [
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.black,
-          selectedFontSize: 0,
-          unselectedFontSize: 0,
-          iconSize: 22,
-          elevation: 0,
-          backgroundColor: Theme.of(context).accentColor,
-          selectedIconTheme: IconThemeData(size: 28),
-          unselectedItemColor: Theme.of(context).focusColor.withOpacity(1),
-          currentIndex: 1,
-          onTap: (int i) {
-            this._selectTab(i);
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: new Container(height: 0.0),
-            ),
-            BottomNavigationBarItem(
-                title: new Container(height: 5.0),
-                icon: Container(
-                  width: 42,
-                  height: 42,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(50),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 40,
-                          offset: Offset(0, 15)),
-                      BoxShadow(
-                          color:  Colors.black,
-                          blurRadius: 13,
-                          offset: Offset(0, 3))
-                    ],
-                  ),
-                  child: new Icon(Icons.home,
-                      color: Theme.of(context).primaryColor),
-                )),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              title: new Container(height: 0.0),
-            ),
-          ]),
+      bottomNavigationBar: new BottomAppBar(
+  child: new Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: <Widget>[
+      IconButton(onPressed: () {}, icon: Icon(Icons.search),),
+      IconButton(onPressed: () {}, icon: Icon(Icons.person),),
+    ],
+  ),
+),
+floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+floatingActionButton: new FloatingActionButton(
+  onPressed: () {},
+  child: Icon(Icons.home),
+),
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: new IconButton(

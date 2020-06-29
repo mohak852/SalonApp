@@ -55,13 +55,17 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ],
           ),
+          Center(child: Text("Valand Samaaj",style: TextStyle(
+            color: Colors.white,
+            fontSize: 25
+          ),)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                height: 100,
-                width: 100,
-                child: Image.asset("assets/1_e_Loq49BI4WmN7o9ItTADg.gif"),
+                height: 300,
+                width: 300,
+                child: Image.asset("assets/bc56b31a50e519be2ed335a47e75bc62.gif"),
               ),
             ],
           ),
